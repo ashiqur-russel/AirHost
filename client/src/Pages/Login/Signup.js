@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import PrimaryButton from "../../Components/Button/PrimaryButton";
 import { AuthContext } from "../../contexts/AuthProvider";
 import toast from "react-hot-toast";
+import setAuthToken from "../../api/auth";
 const Signup = () => {
   const {
     createUser,
@@ -32,6 +33,9 @@ const Signup = () => {
       .then((data) => {
         createUser(email, password)
           .then((result) => {
+            console.log(result);
+            setAuthToken(result.user);
+
             updateUserProfile(name, data.data.display_url)
               .then((res) => {
                 verifyEmail()
@@ -58,6 +62,8 @@ const Signup = () => {
     signInWithGoogle()
       .then((res) => {
         console.log(res.user);
+        setAuthToken(res.user);
+
         toast.success("Logged in with google account");
       })
       .catch((err) => console.log(err));

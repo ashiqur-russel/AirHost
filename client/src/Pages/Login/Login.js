@@ -4,6 +4,7 @@ import PrimaryButton from "../../Components/Button/PrimaryButton";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../contexts/AuthProvider";
 import SmallSpinner from "../../Components/Spinner/SmallSpinner";
+import setAuthToken from "../../api/auth";
 const Login = () => {
   const [userEmail, setUserEmail] = useState("");
   const { signin, resetPassword, loading, setLoading, signInWithGoogle } =
@@ -19,7 +20,8 @@ const Login = () => {
 
     signin(email, password)
       .then((res) => {
-        toast.success("Sigined in Successfully!");
+        toast.success("Signed in Successfully!");
+        setAuthToken(res.user);
         navigate(from, { replace: true });
       })
       .catch((err) => {
@@ -33,6 +35,7 @@ const Login = () => {
       .then((res) => {
         console.log(res.user);
         toast.success("Logged in with google account");
+        setAuthToken(res.user);
         navigate(from, { replace: true });
       })
       .catch((err) => console.log(err));
