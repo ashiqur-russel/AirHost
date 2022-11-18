@@ -3,10 +3,16 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import PrimaryButton from "../../Components/Button/PrimaryButton";
 import { AuthContext } from "../../contexts/AuthProvider";
-
+import toast from "react-hot-toast";
 const Signup = () => {
-  const { createUser, updateUserProfile, verifyEmail, loading, setLoading } =
-    useContext(AuthContext);
+  const {
+    createUser,
+    updateUserProfile,
+    verifyEmail,
+    loading,
+    setLoading,
+    signInWithGoogle,
+  } = useContext(AuthContext);
   const handleSubmit = (event) => {
     event.preventDefault();
     const name = event.target.name.value;
@@ -16,7 +22,6 @@ const Signup = () => {
     //create user
     const formData = new FormData();
     formData.append("image", image);
-
     const url = `https://api.imgbb.com/1/upload?key=6f859024bd2f6172a80f12db0b47c603`;
 
     fetch(url, {
@@ -28,7 +33,15 @@ const Signup = () => {
         createUser(email, password)
           .then((result) => {
             updateUserProfile(name, data.data.display_url)
-              .then((res) => {})
+              .then((res) => {
+                verifyEmail()
+                  .then(() => {
+                    toast.success("Please verify your email");
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                  });
+              })
               .catch((err) => {
                 console.log(err);
               });
@@ -36,6 +49,15 @@ const Signup = () => {
           .catch((err) => {
             console.log(err);
           });
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const handleGoogleSignin = () => {
+    signInWithGoogle()
+      .then((res) => {
+        console.log(res.user);
+        toast.success("Logged in with google account");
       })
       .catch((err) => console.log(err));
   };
@@ -128,7 +150,11 @@ const Signup = () => {
           <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
         </div>
         <div className="flex justify-center space-x-4">
-          <button aria-label="Log in with Google" className="p-3 rounded-sm">
+          <button
+            aria-label="Log in with Google"
+            className="p-3 rounded-sm"
+            onClick={handleGoogleSignin}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 32 32"
