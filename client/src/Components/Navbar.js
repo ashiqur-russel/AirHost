@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
 import PrimaryButton from "../Components/Button/PrimaryButton";
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
+  const navigate = useNavigate();
   const handleLogout = () => {
-    logout().then(() => {});
+    logout().then(() => {
+      navigate("/login");
+    });
   };
 
   return (
