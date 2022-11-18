@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import PrimaryButton from "../../Components/Button/PrimaryButton";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../contexts/AuthProvider";
 import SmallSpinner from "../../Components/Spinner/SmallSpinner";
 const Login = () => {
+  const [userEmail, setUserEmail] = useState("");
   const { signin, resetPassword, loading, setLoading, signInWithGoogle } =
     useContext(AuthContext);
 
@@ -36,6 +37,19 @@ const Login = () => {
       })
       .catch((err) => console.log(err));
   };
+
+  //password resetting
+  const handleReset = () => {
+    resetPassword(userEmail)
+      .then(() => {
+        toast.success("Please check your email for resetting password link");
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
+  };
   return (
     <div className="flex justify-center items-center pt-8">
       <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
@@ -57,6 +71,7 @@ const Login = () => {
                 Email address
               </label>
               <input
+                onBlur={(event) => setUserEmail(event.target.value)}
                 type="email"
                 name="email"
                 id="email"
@@ -93,7 +108,10 @@ const Login = () => {
           </div>
         </form>
         <div className="space-y-1">
-          <button className="text-xs hover:underline text-gray-400">
+          <button
+            className="text-xs hover:underline text-gray-400"
+            onClick={handleReset}
+          >
             Forgot password?
           </button>
         </div>
