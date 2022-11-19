@@ -10,6 +10,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const handleLogout = () => {
     logout().then(() => {
+      setIsDropdownOpen(false);
       navigate("/login");
     });
   };
