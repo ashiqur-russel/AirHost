@@ -6,6 +6,7 @@ import CheckoutCart from "../Components/CheckoutCart";
 import Payment from "../Components/Payment";
 import toast from "react-hot-toast";
 import { AuthContext } from "../contexts/AuthProvider";
+import { saveBooking } from "../api/booking";
 
 const Checkout = () => {
   const { user } = useContext(AuthContext);
@@ -38,9 +39,7 @@ const Checkout = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const handleBooking = () => {
-    console.log(bookingData);
-
-    /*  saveBooking(bookingData)
+    saveBooking(bookingData)
       .then((data) => {
         console.log(data);
         toast.success("Booking Successful!");
@@ -48,7 +47,7 @@ const Checkout = () => {
       .catch((err) => {
         console.log(err);
         toast.error(err?.message);
-      }); */
+      });
   };
 
   return (

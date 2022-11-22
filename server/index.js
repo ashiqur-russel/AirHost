@@ -23,6 +23,7 @@ async function run() {
   try {
     const homesCollection = client.db("aircnc-db").collection("homes");
     const usersCollection = client.db("aircnc-db").collection("users");
+    const bookingsCollection = client.db("aircnc-db").collection("bookings");
 
     //save user email & generate jwt
 
@@ -43,6 +44,14 @@ async function run() {
         expiresIn: "1d",
       });
       res.send({ token, result });
+    });
+
+    //save booking
+    app.post("/bookings", async (req, res) => {
+      const bookingData = req.body;
+      const result = await bookingsCollection.insertOne(bookingData);
+      console.log(result);
+      res.send(result);
     });
     console.log("Database Connected...");
   } finally {
