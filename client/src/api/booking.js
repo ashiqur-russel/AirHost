@@ -12,3 +12,5 @@ export const saveBooking = async (bookingData) => {
   const data = await response.json();
   return data;
 };
+
+//Get All bookings
