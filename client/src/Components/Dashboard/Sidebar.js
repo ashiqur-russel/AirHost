@@ -6,6 +6,7 @@ import {
 import { Link } from "react-router-dom";
 import PrimaryButton from "../Button/PrimaryButton";
 import { AuthContext } from "../../contexts/AuthProvider";
+import UserMenu from "./UserMenu";
 
 const Sidebar = ({ role, loading }) => {
   const { user, logout } = useContext(AuthContext);
@@ -69,11 +70,7 @@ const Sidebar = ({ role, loading }) => {
           {/* Nav Items */}
           <div className="flex flex-col justify-between flex-1 mt-6">
             <nav>
-              <ul>
-                <li>Admin</li>
-                <li>User</li>
-                <li>Host</li>
-              </ul>
+              <UserMenu></UserMenu>
             </nav>
           </div>
         </div>
