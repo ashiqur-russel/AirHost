@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
+const { query } = require("express");
 require("dotenv").config();
 
 const app = express();
@@ -48,10 +49,27 @@ async function run() {
 
     //save booking
     app.post("/bookings", async (req, res) => {
+      let query = {};
       const bookingData = req.body;
       const result = await bookingsCollection.insertOne(bookingData);
       console.log(result);
       res.send(result);
+    });
+
+    //Get All bookings for user
+
+    app.get("/bookings", async (req, res) => {
+      try {
+        let query = {};
+        const email = req.query.email;
+        if (email) {
+          query = { guestEmail: email };
+        }
+        const result = await bookingsCollection.find(query).toArray();
+        res.send(result);
+      } catch (error) {
+        console.log(error);
+      }
     });
     console.log("Database Connected...");
   } finally {
