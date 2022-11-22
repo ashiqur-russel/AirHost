@@ -47,6 +47,16 @@ async function run() {
       res.send({ token, result });
     });
 
+    //get a single user by email
+    app.get("/user/:email", async (req, res) => {
+      const email = req.params.email;
+      const query = { email: email };
+      const user = await usersCollection.findOne(query);
+      console.log(user);
+
+      res.send(user);
+    });
+
     //save booking
     app.post("/bookings", async (req, res) => {
       let query = {};
