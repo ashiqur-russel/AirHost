@@ -1,9 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { getAllBookingsByEmail } from "../../api/booking";
 import Spinner from "../../Components/Spinner/Spinner";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 const MyBookings = () => {
-  const [loading, setLoading] = useState(false);
-
+  const { user } = useContext(AuthContext);
+  const [loading, setLoading] = useState(true);
+  const [bookings, setBookings] = useState([]);
+  useEffect(() => {
+    getAllBookingsByEmail(user?.email)
+      .then((data) => {
+        setBookings(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
+  }, [user]);
+  console.log(bookings);
   return (
     <>
       {loading ? (

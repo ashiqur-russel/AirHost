@@ -1,10 +1,11 @@
 import React from "react";
+import BecomeHostForm from "../../Components/Form/BecomeHostForm";
 
 const BecomeAHost = () => {
   return (
-    <div>
-      <h2>Become a Host</h2>
-    </div>
+    <>
+      <BecomeHostForm></BecomeHostForm>
+    </>
   );
 };
 
