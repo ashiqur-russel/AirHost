@@ -10,6 +10,8 @@ import { saveBooking } from "../api/booking";
 
 const Checkout = () => {
   const { user } = useContext(AuthContext);
+
+  //dummy fake data for testing booking
   const homeData = {
     _id: "60ehjhedhjdj3434",
     location: "Dhaka, Bangladesh",
