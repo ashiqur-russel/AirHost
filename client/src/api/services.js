@@ -1,5 +1,5 @@
 export const addHome = async (homeData) => {
-  const url = `${process.env.REACT_APP_API_URL}homes`;
+  const url = `${process.env.REACT_APP_API_URL}/homes`;
 
   const response = await fetch(url, {
     method: "POST",

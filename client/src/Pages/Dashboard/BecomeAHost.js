@@ -11,13 +11,11 @@ const BecomeAHost = () => {
 
   useEffect(() => {
     getRole(user?.email).then((data) => {
-      console.log(data.role);
       setRole(data.role);
       setLoading(false);
     });
   }, [user]);
 
-  console.log(role);
   const handleSubmit = (event) => {
     event.preventDefault();
     const location = event.target.location.value;
@@ -29,9 +27,8 @@ const BecomeAHost = () => {
         email: user?.email,
         role: "requested",
       };
-      console.log(hostData);
 
-      hostRequest(hostData).then((data) => console.log(data));
+      hostRequest(hostData).then((data) => {});
     });
   };
 

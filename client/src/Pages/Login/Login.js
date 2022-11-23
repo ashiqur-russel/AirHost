@@ -33,7 +33,6 @@ const Login = () => {
   const handleGoogleSignin = () => {
     signInWithGoogle()
       .then((res) => {
-        console.log(res.user);
         toast.success("Logged in with google account");
         setAuthToken(res.user);
         navigate(from, { replace: true });

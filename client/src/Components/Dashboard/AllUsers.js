@@ -11,7 +11,6 @@ const AllUsers = () => {
 
   const handleRequest = (user) => {
     makeHost(user).then((data) => {
-      console.log(data);
       getUsers();
     });
   };
@@ -24,7 +23,6 @@ const AllUsers = () => {
     });
   };
 
-  console.log(users);
   return (
     <div className="container mx-auto px-4 sm:px-8">
       <div className="py-8">

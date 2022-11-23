@@ -33,7 +33,6 @@ const Signup = () => {
       .then((data) => {
         createUser(email, password)
           .then((result) => {
-            console.log(result);
             setAuthToken(result.user);
 
             updateUserProfile(name, data.data.display_url)
@@ -61,7 +60,6 @@ const Signup = () => {
   const handleGoogleSignin = () => {
     signInWithGoogle()
       .then((res) => {
-        console.log(res.user);
         setAuthToken(res.user);
 
         toast.success("Logged in with google account");

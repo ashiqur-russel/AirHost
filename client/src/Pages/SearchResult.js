@@ -4,7 +4,6 @@ import SearchCard from "../Components/Card/SearchCard";
 
 const SearchResult = () => {
   const { state } = useLocation();
-  console.log(state);
   return (
     <section className="text-gray-600 body-font">
       <div className="mx-auto flex flex-wrap">

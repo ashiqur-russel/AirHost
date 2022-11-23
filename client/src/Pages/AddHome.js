@@ -45,7 +45,6 @@ const AddHome = () => {
         };
 
         addHome(homeData).then((data) => {
-          console.log(data);
           toast.success("Home Added Successfully");
         });
       })

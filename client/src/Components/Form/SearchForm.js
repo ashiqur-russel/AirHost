@@ -19,7 +19,6 @@ const SearchForm = () => {
       from: arrivalDate,
       to: departureDate,
     };
-    console.log(query);
     navigate("/service-result", { state: query });
   };
   return (

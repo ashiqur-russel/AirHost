@@ -13,7 +13,6 @@ import HostMenu from "./HostMenu";
 const Sidebar = ({ role, loading }) => {
   const { user, logout } = useContext(AuthContext);
   const [isActive, setActive] = useState("false");
-  console.log(role);
   // Sidebar Responsive Handler
   const handleToggle = () => {
     setActive(!isActive);

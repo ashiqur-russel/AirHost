@@ -11,7 +11,6 @@ const Home = () => {
     fetch("expdata.json")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setAllExp(data);
       });
   }, []);

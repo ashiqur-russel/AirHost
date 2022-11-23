@@ -11,7 +11,6 @@ const AllBookings = () => {
   useEffect(() => {
     setLoading(true);
     getAllBookings(user?.email).then((data) => {
-      console.log(data);
       setBookings(data);
       setLoading(false);
     });

@@ -6,7 +6,6 @@ const WhosComing = ({
   bookingData,
   setBookingData,
 }) => {
-  console.log(host);
   return (
     <>
       <h1 className="text-2xl font-bold">Traveling for work?</h1>

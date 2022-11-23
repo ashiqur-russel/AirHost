@@ -18,7 +18,6 @@ const MyBookings = () => {
         setLoading(false);
       });
   }, [user]);
-  console.log(bookings);
   return (
     <>
       {loading ? (
