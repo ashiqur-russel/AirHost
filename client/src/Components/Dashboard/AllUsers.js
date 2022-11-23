@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getAllUsers } from "../../api/user";
+import { getAllUsers, makeHost } from "../../api/user";
 import SmallSpinner from "../../Components/Spinner/SmallSpinner";
 
 const AllUsers = () => {
@@ -9,7 +9,12 @@ const AllUsers = () => {
     getUsers();
   }, []);
 
-  const handleRequest = (user) => {};
+  const handleRequest = (user) => {
+    makeHost(user).then((data) => {
+      console.log(data);
+      getUsers();
+    });
+  };
 
   const getUsers = () => {
     setLoading(true);
