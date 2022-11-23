@@ -22,3 +22,12 @@ export const getRole = async (email) => {
   const data = await response.json();
   return data;
 };
+
+// Get All Users
+export const getAllUsers = async () => {
+  const response = await fetch(`${process.env.REACT_APP_API_URL}users`);
+
+  const users = await response.json();
+
+  return users;
+};

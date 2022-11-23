@@ -57,6 +57,15 @@ async function run() {
       res.send(user);
     });
 
+    //get All user
+    app.get("/users", async (req, res) => {
+      const query = {};
+      const user = await usersCollection.find(query).toArray();
+      console.log(user);
+
+      res.send(user);
+    });
+
     //save booking
     app.post("/bookings", async (req, res) => {
       let query = {};

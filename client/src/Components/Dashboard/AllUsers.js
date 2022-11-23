@@ -1,12 +1,23 @@
 import React, { useEffect, useState } from "react";
+import { getAllUsers } from "../../api/user";
 import SmallSpinner from "../../Components/Spinner/SmallSpinner";
 
 const AllUsers = () => {
   const [loading, setLoading] = useState(false);
   const [users, setUsers] = useState([]);
-  useEffect(() => {}, []);
+  useEffect(() => {
+    getUsers();
+  }, []);
 
   const handleRequest = (user) => {};
+
+  const getUsers = () => {
+    setLoading(true);
+    getAllUsers().then((data) => {
+      setUsers(data);
+      setLoading(false);
+    });
+  };
 
   console.log(users);
   return (
