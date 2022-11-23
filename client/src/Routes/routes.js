@@ -16,6 +16,7 @@ import MyBookings from "../Pages/Dashboard/MyBookings";
 import BecomeAHost from "../Pages/Dashboard/BecomeAHost";
 import AllUsers from "../Components/Dashboard/AllUsers";
 import AllBookings from "../Components/Dashboard/AllBookings";
+import AddHome from "../Pages/AddHome";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -84,6 +85,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/all-bookings",
         element: <AllBookings />,
+      },
+      {
+        path: "/dashboard/add-home",
+        element: <AddHome></AddHome>,
       },
     ],
   },

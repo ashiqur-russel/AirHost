@@ -90,6 +90,16 @@ async function run() {
         console.log(error);
       }
     });
+
+    //Add home
+
+    app.post("/homes", async (req, res) => {
+      let query = {};
+      const homesData = req.body;
+      const result = await homesCollection.insertOne(homesData);
+      console.log(result);
+      res.send(result);
+    });
     console.log("Database Connected...");
   } finally {
   }
